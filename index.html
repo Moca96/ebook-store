@@ -3,47 +3,89 @@
 <head>
   <title>Ebook Store</title>
   <style>
-    body { background: black; color: white; font-family: Arial; padding: 20px; }
-    .card { border: 1px solid gray; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
-    input { padding: 10px; margin-top: 10px; }
-    button { padding: 10px 15px; background: green; color: white; border: none; margin-top:10px;}
+    body {
+      background: black;
+      color: white;
+      font-family: Arial;
+      padding: 20px;
+    }
+
+    .card {
+      border: 1px solid gray;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      max-width: 400px;
+    }
+
+    input {
+      padding: 10px;
+      margin-top: 10px;
+      width: 100%;
+    }
+
+    button {
+      padding: 10px 15px;
+      background: green;
+      color: white;
+      border: none;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+
+    .status {
+      margin-top: 10px;
+      color: lightgreen;
+    }
   </style>
 </head>
+
 <body>
 
 <h1>Ebook Store</h1>
 
 <div class="card">
   <h2>My First Ebook</h2>
-  <p>Price: ₹399</p>
+  <p><b>Price: ₹399</b></p>
   <p>Pay via UPI: <b>rkhan@fam</b></p>
 
-  <input type="text" id="utr" placeholder="Enter UTR ID">
-  <br>
+  <p>
+    After payment, enter your <b>Transaction ID (UTR)</b>.  
+    You can find it in your UPI app (GPay, PhonePe, Paytm).
+  </p>
+
+  <input type="text" id="utr" placeholder="Enter Transaction ID (UTR)">
+
   <button onclick="submitPayment()">Submit Payment</button>
 
-  <p id="status"></p>
-  <button id="downloadBtn" style="display:none;" onclick="download()">Download Ebook</button>
+  <p id="status" class="status"></p>
+
+  <button id="downloadBtn" style="display:none;" onclick="downloadEbook()">
+    Download Ebook
+  </button>
 </div>
 
 <script>
 function submitPayment() {
   let utr = document.getElementById("utr").value;
+
   if (!utr) {
-    alert("Enter UTR!");
+    alert("Please enter Transaction ID (UTR)");
     return;
   }
 
-  localStorage.setItem("payment", "pending");
-  document.getElementById("status").innerText = "Payment submitted. Waiting for approval...";
+  localStorage.setItem("paymentStatus", "pending");
+
+  document.getElementById("status").innerText =
+    "Payment submitted! Waiting for approval...";
 }
 
-function download() {
-  alert("Ebook download started (we will connect real file next)");
+function downloadEbook() {
+  alert("Ebook download will be added soon");
 }
 
-// Simulate approval (for now)
-if (localStorage.getItem("payment") === "approved") {
+// Simulated approval (temporary)
+if (localStorage.getItem("paymentStatus") === "approved") {
   document.getElementById("status").innerText = "Payment approved!";
   document.getElementById("downloadBtn").style.display = "block";
 }
