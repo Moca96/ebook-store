@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Ebook Store</title>
+  <style>
+    body { background: black; color: white; font-family: Arial; padding: 20px; }
+    .card { border: 1px solid gray; padding: 20px; border-radius: 10px; margin-bottom: 20px; }
+    input { padding: 10px; margin-top: 10px; }
+    button { padding: 10px 15px; background: green; color: white; border: none; }
+  </style>
+</head>
+<body>
+
+<h1>Ebook Store</h1>
+
+<div class="card">
+  <h2>My First Ebook</h2>
+
+  <!-- 👇 CHANGE PRICE HERE -->
+  <p>Price: ₹399</p>
+
+  <p>Pay via UPI: <b>rkhan@fam</b></p>
+
+  <input type="text" id="utr" placeholder="Enter UTR ID">
+  <br><br>
+  <button onclick="buy()">Submit Payment</button>
+</div>
+
+<p id="msg"></p>
+
+<script>
+function buy() {
+  let utr = document.getElementById("utr").value;
+  if (!utr) {
+    document.getElementById("msg").innerText = "Enter UTR!";
+    return;
+  }
+  document.getElementById("msg").innerText = "Payment submitted! Wait for approval.";
+}
+</script>
+
+</body>
+</html>
